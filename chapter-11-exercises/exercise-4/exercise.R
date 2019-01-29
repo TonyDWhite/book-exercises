@@ -2,14 +2,16 @@
 
 # Install the `"nycflights13"` package. Load (`library()`) the package.
 # You'll also need to load `dplyr`
-
+library(dplyr)
+install.packages("nycflights13")
+library(nycflights13)
 
 # The data frame `flights` should now be accessible to you.
 # Use functions to inspect it: how many rows and columns does it have?
 # What are the names of the columns?
 # Use `??flights` to search for documentation on the data set (for what the 
 # columns represent)
-
+View(flights)
 
 # Use `dplyr` to give the data frame a new column that is the amount of time
 # gained or lost while flying (that is: how much of the delay arriving occured
