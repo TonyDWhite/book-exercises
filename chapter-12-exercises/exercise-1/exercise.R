@@ -41,11 +41,18 @@ by_size <- select(avocados, Date, other_avos, small_haas, large_haas, xlarge_haa
 # `volume`. Create a new dataframe `size_gathered` by passing the `by_size` 
 # data frame to the `gather()` function. `size_gathered` will only have 3 
 # columns: `Date`, `size`, and `volume`.
-
+size_gathered <- gather(
+  by_size,
+  key = size,
+  value = volume,
+  - Date
+)
 
 # Using `size_gathered`, compute the average sales volume of each size 
 # (hint, first `group_by` size, then compute using `summarize`)
-
+size_gathered %>% 
+  group_by(size) %>% 
+  summarize(average = mean(volume, na.rm = TRUE))
 
 # This shape also facilitates the visualization of sales over time
 # (how to write this code is covered in Chapter 16)
@@ -57,13 +64,19 @@ ggplot(size_gathered) +
 # Create a new data frame `by_type` by grouping the `avocados` dataframe by
 # `Date` and `type`, and calculating the sum of the `Total.Volume` for that type
 # in that week (resulting in a data frame with 2 rows per week).
-
+by_type <- avocados %>% 
+  group_by(type, Date) %>% 
+  summarize(week_total = sum(Total.Volume))
 
 # To make a (visual) comparison of conventional versus organic sales, you 
 # need to **spread** out the `type` column into two different columns. Create a 
 # new data frame `by_type_wide` by passing the `by_type` data frame to 
 # the `spread()` function!
-
+by_type_wide <- by_type %>% 
+  spread(
+    key = type,
+    value = week_total
+  )
 
 # Now you can create a scatterplot comparing conventional to organic sales!
 # (how to write this code is covered in Chapter 16)
