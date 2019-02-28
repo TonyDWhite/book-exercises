@@ -108,6 +108,6 @@ ggplot(data = diamonds) +
 # Use the `ggsave()` function to save the current (recent) plot to disk.
 # Name the output file "my-plot.png".
 # Make sure you've set the working directory!!
-ggplot(data = diamonds) +
-  geom_point(mapping = aes(x = price, y = carat, color = clarity)) %>% 
-  ggsave("my-plot.png")
+my_plot <- ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = price, y = carat, color = clarity)) 
+  ggsave(filename = "my-plot.png", my_plot)
