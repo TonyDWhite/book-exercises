@@ -39,7 +39,6 @@ ggplot(data = diamonds) +
 ## Scales
 
 # Draw a "boxplot" (with `geom_boxplot`) for the diamond's price (y) by color (x)
-
 ggplot(data = diamonds) +
   geom_boxplot(mapping = aes(x = color, y = price))
 
